@@ -11,7 +11,7 @@ final _router = Router()
   ..post('/echo', _echoHandler);
 
 Response _rootHandler(Request req) {
-  return Response.ok('Hello, World!\n');
+  return Response.ok('Hello, World!');
 }
 
 Future<Response> _echoHandler(Request request) async {

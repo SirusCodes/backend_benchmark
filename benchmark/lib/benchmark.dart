@@ -90,7 +90,7 @@ Future<double> sendFile(int requestCount) async {
 
 Future<double> jsonParse(int requestCount) async {
   final uri = Uri.http(host, "/json_obj");
-  final data = jsonEncode(await File("files/test.json").readAsString());
+  final data = await File("files/test.json").readAsString();
   final client = Client();
   return getTimeFor(
     requestCount,

@@ -32,6 +32,14 @@ class DartConduitChannel extends ApplicationChannel {
       return Response.notFound();
     });
 
+    router.route("/json_obj").linkFunction((request) async {
+      if (request.method == "POST") {
+        final body = await request.body.decode<Map<String, dynamic>>();
+        return Response.ok(body.length.toString());
+      }
+      return Response.notFound();
+    });
+
     return router;
   }
 }

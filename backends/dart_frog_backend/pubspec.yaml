@@ -7,7 +7,9 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+  compute: ^1.0.2
   dart_frog: ^0.2.0
+  shelf_multipart: ^1.0.0
 
 dev_dependencies:
   mocktail: ^0.3.0

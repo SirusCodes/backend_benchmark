@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   conduit: ^3.2.0
+  mime: ^1.0.2
 
 dev_dependencies:
   test: ^1.21.6

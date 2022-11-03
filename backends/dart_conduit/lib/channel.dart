@@ -1,4 +1,6 @@
-import 'package:dart_conduit/dart_conduit.dart';
+import 'package:mime/mime.dart';
+
+import 'dart_conduit.dart';
 
 /// This type initializes an application.
 ///
@@ -38,6 +40,25 @@ class DartConduitChannel extends ApplicationChannel {
         return Response.ok(body.length.toString());
       }
       return Response.notFound();
+    });
+
+    router.route("/file_upload").linkFunction((request) async {
+      final boundary = request.raw.headers.contentType!.parameters["boundary"]!;
+      final transformer = MimeMultipartTransformer(boundary);
+      final bodyBytes = await request.body.decode<List<int>>();
+
+      // Pay special attention to the square brackets in the argument:
+      final bodyStream = Stream.fromIterable([bodyBytes]);
+      final parts = await transformer.bind(bodyStream).toList();
+
+      int size = 0;
+      for (var part in parts) {
+        final content = await part.toList();
+
+        size += content.length;
+      }
+
+      return Response.ok(size.toString());
     });
 
     return router;

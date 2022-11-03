@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.17.0"
+  compute:
+    dependency: "direct main"
+    description:
+      name: compute
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   convert:
     dependency: transitive
     description:
@@ -204,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
+  shelf_multipart:
+    dependency: "direct main"
+    description:
+      name: shelf_multipart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   shelf_packages_handler:
     dependency: transitive
     description:

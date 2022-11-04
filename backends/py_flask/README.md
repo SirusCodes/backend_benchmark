@@ -3,11 +3,11 @@
 Download dependencies
 
 ```sh
-dart pub get
+pip install -r requirements.txt
 ```
 
-Run the CLI
+Run server
 
 ```sh
-dart run
+python serve.py
 ```

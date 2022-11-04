@@ -3,11 +3,11 @@
 Download dependencies
 
 ```sh
-dart pub get
+npm install
 ```
 
-Run the CLI
+Run server
 
 ```sh
-dart run
+npm start
 ```

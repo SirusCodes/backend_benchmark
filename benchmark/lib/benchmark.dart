@@ -7,17 +7,23 @@ import 'package:http_parser/http_parser.dart' show MediaType;
 
 const host = "127.0.0.1:8080";
 
+extension ListAvg<T extends num> on List<T> {
+  double average() {
+    num sum = (T == int ? 0 : 0.0) as T;
+    for (num current in this) {
+      sum += current;
+    }
+    return sum / length;
+  }
+}
+
 Future<double> getRTTTimePost(int requestCount) async {
   final body = jsonEncode({"name": "Darshan"});
   final uri = Uri.http(host, "/echo");
   final client = Client();
   return getTimeFor(
     requestCount,
-    () async {
-      for (var i = 0; i < requestCount; i++) {
-        await client.post(uri, body: body);
-      }
-    },
+    () => client.post(uri, body: body),
     () => client.close(),
   );
 }
@@ -27,42 +33,34 @@ Future<double> getRTTTimeGet(int requestCount) async {
   final client = Client();
   return getTimeFor(
     requestCount,
-    () async {
-      for (var i = 0; i < requestCount; i++) {
-        await client.get(uri);
-      }
-    },
+    () => client.get(uri),
     () => client.close(),
   );
 }
 
-Future<double> getRTTTimePostParallel(int requestCount) async {
+Future<double> getRTTTimePostParallel(int requestCount, int burstCount) async {
   final body = jsonEncode({"name": "Darshan"});
   final uri = Uri.http(host, "/echo");
   final client = Client();
   return getTimeFor(
     requestCount,
-    () async {
-      await Future.wait(List.generate(
-        requestCount,
-        (_) => client.post(uri, body: body),
-      ));
-    },
+    () => Future.wait(List.generate(
+      burstCount,
+      (_) => client.post(uri, body: body),
+    )),
     () => client.close(),
   );
 }
 
-Future<double> getRTTTimeGetParallel(int requestCount) async {
+Future<double> getRTTTimeGetParallel(int requestCount, int burstCount) async {
   final uri = Uri.http(host);
   final client = Client();
   return getTimeFor(
     requestCount,
-    () async {
-      await Future.wait(List.generate(
-        requestCount,
-        (_) => client.get(uri),
-      ));
-    },
+    () => Future.wait(List.generate(
+      requestCount,
+      (_) => client.get(uri),
+    )),
     () => client.close(),
   );
 }
@@ -72,18 +70,16 @@ Future<double> sendFile(int requestCount) async {
   final bytes = await File("files/test.json").readAsBytes();
 
   return getTimeFor(requestCount, () async {
-    for (var i = 0; i < requestCount; i++) {
-      final request = MultipartRequest("POST", uri)
-        ..files.add(MultipartFile.fromBytes(
-          "benchmark",
-          bytes,
-          filename: "test.json",
-          contentType: MediaType("application", "json"),
-        ));
-      final res = await Response.fromStream(await request.send());
-      if (res.statusCode != 200) {
-        throw Exception("Failed");
-      }
+    final request = MultipartRequest("POST", uri)
+      ..files.add(MultipartFile.fromBytes(
+        "benchmark",
+        bytes,
+        filename: "test.json",
+        contentType: MediaType("application", "json"),
+      ));
+    final res = await Response.fromStream(await request.send());
+    if (res.statusCode != 200) {
+      throw Exception("Failed");
     }
   });
 }
@@ -94,15 +90,11 @@ Future<double> jsonParse(int requestCount) async {
   final client = Client();
   return getTimeFor(
     requestCount,
-    () async {
-      for (var i = 0; i < requestCount; i++) {
-        await client.post(
-          uri,
-          body: data,
-          headers: {"content-type": "application/json"},
-        );
-      }
-    },
+    () => client.post(
+      uri,
+      body: data,
+      headers: {"content-type": "application/json"},
+    ),
     () => client.close(),
   );
 }
@@ -112,9 +104,16 @@ Future<double> getTimeFor(
   Function func, [
   Function? dispose,
 ]) async {
-  final stopwatch = Stopwatch()..start();
-  await func();
-  stopwatch.stop();
+  final interation = <int>[];
+  final stopwatch = Stopwatch();
+  for (var i = 0; i < requestCount; i++) {
+    stopwatch.start();
+    await func();
+    stopwatch.stop();
+    interation.add(stopwatch.elapsedMicroseconds);
+    stopwatch.reset();
+  }
   dispose?.call();
-  return stopwatch.elapsedMilliseconds / requestCount;
+
+  return interation.average();
 }

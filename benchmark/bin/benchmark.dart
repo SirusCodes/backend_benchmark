@@ -2,45 +2,53 @@ import 'dart:io';
 
 import 'package:benchmark/benchmark.dart' as benchmark;
 
-typedef Stats = Future<double> Function();
-
-Future<double> runMultiple(Stats func) async {
-  final stats = await Future.wait(List.generate(10, (_) {
-    Future.delayed(const Duration(seconds: 2));
-    return func();
-  }));
-  return stats.reduce((v, e) => v + e) / stats.length;
-}
+const interation = 20;
 
 Future<int> main(List<String> arguments) async {
-  // Round trip time
-  print("\nRequests in sync");
-  final rttGet = await runMultiple(() => benchmark.getRTTTimeGet(1000));
-  print("GET RTT: ${rttGet}ms");
-  final rttPost = await runMultiple(() => benchmark.getRTTTimePost(1000));
-  print("POST RTT: ${rttPost}ms");
+  final List<double> rttGet = [],
+      rttPost = [],
+      rttGetParallel = [],
+      rttPostParallel = [],
+      sendFileTime = [],
+      parseJsonTime = [];
 
-  // Round trip time in Parallel
-  print("\nRequests in parallel");
-  final rttGetParallel = await runMultiple(
-    () => benchmark.getRTTTimeGetParallel(50),
-  );
-  print("GET RTT: ${rttGetParallel}ms");
-  final rttPostParallel = await runMultiple(
-    () => benchmark.getRTTTimePostParallel(50),
-  );
-  print("POST RTT: ${rttPostParallel}ms");
-
-  // Sending files to server
   final fileSize = File("files/test.json").lengthSync() / 1024;
-  print("\nSending files");
-  final sendFileTime = await runMultiple(() => benchmark.sendFile(100));
-  print("Send file (${fileSize.toStringAsFixed(2)}KB): ${sendFileTime}ms");
 
-  // Json parsing speed
-  print("\nChecking json parsing speed");
-  final parseJsonTime = await runMultiple(() => benchmark.jsonParse(100));
-  print("Parse JSON: ${parseJsonTime}ms");
+  for (var i = 0; i < interation; i++) {
+    print("Running ${i + 1} iteration...");
+
+    // Round trip time
+    rttGet.add(await benchmark.getRTTTimeGet(1000));
+    rttPost.add(await benchmark.getRTTTimePost(1000));
+
+    // Round trip time in Parallel
+    rttGetParallel.add(await benchmark.getRTTTimeGetParallel(1, 500));
+    rttPostParallel.add(await benchmark.getRTTTimePostParallel(1, 500));
+
+    // Sending files to server
+    sendFileTime.add(await benchmark.sendFile(100));
+
+    // Json parsing speed
+    parseJsonTime.add(await benchmark.jsonParse(100));
+
+    await Future.delayed(const Duration(seconds: 2));
+  }
+
+  print("\nRequests in sync");
+  print("GET RTT: ${rttGet.average()}ms");
+  print("POST RTT: ${rttPost.average()}ms");
+
+  print("\nRequests in parallel");
+  print("GET RTT: ${rttGetParallel.average()}ms");
+  print("POST RTT: ${rttPostParallel.average()}ms");
+
+  print("\nFile upload");
+  print(
+    "Send file (${fileSize.toStringAsFixed(2)}KB): ${sendFileTime.average()}ms",
+  );
+
+  print("\nJSON parsing speed");
+  print("Parse JSON: ${parseJsonTime.average()}ms");
 
   return 0;
 }

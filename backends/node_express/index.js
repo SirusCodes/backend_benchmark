@@ -8,7 +8,7 @@ const hostname = "127.0.0.1";
 app.use(bodyParser.json({ limit: "50mb", strict: false }));
 
 app.get("/", (_, res) => {
-  res.send("Hello World!");
+  res.send(JSON.stringify({ response: "Hello World!" }));
 });
 
 app.post("/echo", (req, res) => {

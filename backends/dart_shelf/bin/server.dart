@@ -15,7 +15,7 @@ final _router = Router()
   ..post("/json_obj", _jsonObj);
 
 Response _rootHandler(Request req) {
-  return Response.ok('Hello, World!');
+  return Response.ok(json.encode({"response": 'Hello, World!'}));
 }
 
 Future<Response> _echoHandler(Request request) async {

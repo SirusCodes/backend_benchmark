@@ -21,7 +21,7 @@ class DartConduitChannel extends ApplicationChannel {
     // See: https://conduit.io/docs/http/request_controller/
     router.route("/").linkFunction((request) async {
       if (request.method == "GET") {
-        return Response.ok("Hello, World!");
+        return Response.ok({"response": 'Hello, World!'});
       }
       return Response.notFound();
     });

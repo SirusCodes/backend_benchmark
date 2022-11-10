@@ -6,6 +6,12 @@ Download dependencies
 dart pub get
 ```
 
+Activate conduit cli
+
+```dart
+dart pub global activate conduit
+```
+
 Run server
 
 ```sh

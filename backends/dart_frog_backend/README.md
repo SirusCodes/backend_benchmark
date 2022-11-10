@@ -6,6 +6,12 @@ Download dependencies
 dart pub get
 ```
 
+Activate dart_frog_cli
+
+```sh
+dart pub global activate dart_frog_cli
+```
+
 Build server
 
 ```sh

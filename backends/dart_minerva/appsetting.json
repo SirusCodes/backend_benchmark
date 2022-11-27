@@ -1,0 +1,1 @@
+{"debug":{"compile-type":"JIT","host":"127.0.0.1","port":8080},"release":{"compile-type":"AOT","host":"0.0.0.0","port":8080}}

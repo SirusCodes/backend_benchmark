@@ -29,11 +29,11 @@ class EndpointsBuilder extends MinervaEndpointsBuilder {
 
     var field = form.data['benchmark'] as FormDataFile;
 
-    return utf8.decode(field.bytes);
+    return utf8.decode(field.bytes).length;
   }
 
   dynamic _jsonObject(ServerContext context, MinervaRequest request) async {
-    var json = jsonDecode(await request.body.asText());
+    var json = await request.body.asJson();
 
     return json.length;
   }

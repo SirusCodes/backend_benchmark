@@ -1,12 +1,19 @@
-# dart_minerva
+# How to run
 
-A new Minerva project.
+Download dependencies:
 
-## Getting Started
+```sh
+dart pub get
+```
 
-This project is a starting point for a Minerva application.
+Activate Minerva CLI:
 
-A few resources to get you started if this is your first Minerva project:
+```sh
+dart pub global activate conduit
+```
 
-- [Documentation](https://github.com/GlebBatykov/minerva)
-- [Examples](https://github.com/GlebBatykov/minerva_examples)
+Run server:
+
+```sh
+minerva run
+```

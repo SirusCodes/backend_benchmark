@@ -9,7 +9,7 @@ dart pub get
 Activate Minerva CLI:
 
 ```sh
-dart pub global activate conduit
+dart pub global activate minerva
 ```
 
 Run server:

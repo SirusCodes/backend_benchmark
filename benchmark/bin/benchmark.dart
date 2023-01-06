@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:benchmark/benchmark.dart' as benchmark;
@@ -5,6 +6,8 @@ import 'package:benchmark/benchmark.dart' as benchmark;
 const interation = 20;
 
 Future<int> main(List<String> arguments) async {
+  final name = arguments.length == 1 ? arguments[0] : "none";
+
   final List<double> rttGet = [],
       rttPost = [],
       rttGetParallel = [],
@@ -50,5 +53,27 @@ Future<int> main(List<String> arguments) async {
   print("\nJSON parsing speed");
   print("Parse JSON: ${parseJsonTime.average()}ms");
 
+  saveResults(
+    {
+      "get_rtt": rttGet.average(),
+      "post_rtt": rttPost.average(),
+      "get_rtt_parallel": rttGetParallel.average(),
+      "post_rtt_parallel": rttPostParallel.average(),
+      "send_file": sendFileTime.average(),
+      "parse_json": parseJsonTime.average(),
+      "file_size": fileSize,
+    },
+    name,
+  );
+
   return 0;
+}
+
+void saveResults(Map<String, num> result, String name) {
+  final file = File("./results/$name.json");
+  if (file.existsSync()) {
+    file.deleteSync();
+  }
+  file.createSync(recursive: true);
+  file.writeAsStringSync(jsonEncode(result));
 }

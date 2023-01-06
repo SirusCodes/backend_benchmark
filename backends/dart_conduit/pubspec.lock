@@ -56,63 +56,63 @@ packages:
       name: conduit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.5"
+    version: "3.2.12"
   conduit_codable:
     dependency: transitive
     description:
       name: conduit_codable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_common:
     dependency: transitive
     description:
       name: conduit_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_config:
     dependency: transitive
     description:
       name: conduit_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_isolate_exec:
     dependency: transitive
     description:
       name: conduit_isolate_exec
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_open_api:
     dependency: transitive
     description:
       name: conduit_open_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_password_hash:
     dependency: transitive
     description:
       name: conduit_password_hash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_runtime:
     dependency: transitive
     description:
       name: conduit_runtime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   conduit_test:
     dependency: "direct dev"
     description:
       name: conduit_test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.4"
+    version: "3.2.11"
   convert:
     dependency: transitive
     description:

@@ -16,7 +16,7 @@ jobs:
         run: ./generate-report.sh
 
       - name: zip results
-        run: ( cd benchmark && zip results.zip results/ )
+        run: ( cd benchmark && zip -r results.zip results/ )
 
       - uses: actions/upload-artifact@v2
         with:

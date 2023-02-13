@@ -1,0 +1,20 @@
+name: Generate report
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+
+      - name: generate report
+        run: generate-report.sh
+
+      - name: zip results
+        run: ( cd benchmark && zip results.zip results/ )
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "results.zip"
+          path: benchmark/results.zip

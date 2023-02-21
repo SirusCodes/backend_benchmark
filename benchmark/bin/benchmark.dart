@@ -4,6 +4,10 @@ import 'dart:io';
 import 'package:benchmark/benchmark.dart' as benchmark;
 
 const interation = 20;
+const syncReqCount = 1000;
+const asyncBurstReqCount = 250;
+const fileReqCount = 100;
+const jsonReqCount = 100;
 
 Future<int> main(List<String> arguments) async {
   final name = arguments.length == 1 ? arguments[0] : "none";
@@ -21,18 +25,20 @@ Future<int> main(List<String> arguments) async {
     print("Running ${i + 1} iteration...");
 
     // Round trip time
-    rttGet.add(await benchmark.getRTTTimeGet(1000));
-    rttPost.add(await benchmark.getRTTTimePost(1000));
+    rttGet.add(await benchmark.getRTTTimeGet(syncReqCount));
+    rttPost.add(await benchmark.getRTTTimePost(syncReqCount));
 
     // Round trip time in Parallel
-    rttGetParallel.add(await benchmark.getRTTTimeGetParallel(1, 500));
-    rttPostParallel.add(await benchmark.getRTTTimePostParallel(1, 500));
+    rttGetParallel
+        .add(await benchmark.getRTTTimeGetParallel(1, asyncBurstReqCount));
+    rttPostParallel
+        .add(await benchmark.getRTTTimePostParallel(1, asyncBurstReqCount));
 
     // Sending files to server
-    sendFileTime.add(await benchmark.sendFile(100));
+    sendFileTime.add(await benchmark.sendFile(fileReqCount));
 
     // Json parsing speed
-    parseJsonTime.add(await benchmark.jsonParse(100));
+    parseJsonTime.add(await benchmark.jsonParse(jsonReqCount));
 
     await Future.delayed(const Duration(seconds: 2));
   }

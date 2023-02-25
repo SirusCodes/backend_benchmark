@@ -13,7 +13,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: generate report
-        run: ./generate-report.sh
+        run: python generate_report.py
 
       - name: zip results
         run: ( cd benchmark && zip -r results.zip results/ )

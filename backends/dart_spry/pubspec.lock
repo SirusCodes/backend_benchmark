@@ -301,10 +301,10 @@ packages:
     dependency: "direct main"
     description:
       name: spry_multer
-      sha256: "7e7363e8193cd9c4a5632753314cb5fb0906664c2d40f3af551e1f82ec042873"
+      sha256: "6c1c9b6fd49e49b62a1af5ae23e1839ab6ac426e6fa912ff2ce7d7e900c20330"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
+    version: "0.0.2"
   spry_router:
     dependency: "direct main"
     description:

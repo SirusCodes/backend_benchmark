@@ -11,8 +11,8 @@ backends = os.listdir('./backends')
 
 
 for backend in backends:
-    if backend == "dart_conduit":
-        continue
+    # if backend == "dart_conduit":
+    #     continue
 
     print(f"Testing {backend}...")
 

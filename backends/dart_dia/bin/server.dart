@@ -36,8 +36,8 @@ void main(List<String> args) async {
     ctx.body = json.encode({"response": "Hello, ${map["name"]}!"});
   });
   router.post('/file_upload', (ctx, next) async {
-    final files = ctx.files;
-    ctx.body = files.length.toString();
+    final file = ctx.files['benchmark'];
+    ctx.body = file?.first.file.lengthSync().toString() ?? '0';
   });
   router.post('/json_obj', (ctx, next) async {
     final body = ctx.parsed;

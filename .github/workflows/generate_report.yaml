@@ -1,7 +1,6 @@
 name: Generate report
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -13,12 +12,14 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: generate report
-        run: python generate_report.py
+        run: python scripts/generate_report.py
 
-      - name: zip results
-        run: ( cd benchmark && zip -r results.zip results/ )
+      - name: generate graphs
+        run: pip install -r scripts/requirements.txt && python scripts/generate_graphs.py
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
-          name: "results.zip"
-          path: benchmark/results.zip
+          name: results
+          path: |
+            benchmark/results/
+            graphs/

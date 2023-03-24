@@ -1,4 +1,4 @@
-name: Generate report
+name: Generate Performance results
 
 on:
   workflow_dispatch:
@@ -12,10 +12,13 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: generate report
-        run: python scripts/generate_report.py
+        run: python scripts/generate_perf_report.py
+
+      - name: install python deps
+        run: pip install -r scripts/requirements.txt
 
       - name: generate graphs
-        run: pip install -r scripts/requirements.txt && python scripts/generate_graphs.py
+        run: python scripts/generate_perf_graphs.py
 
       - uses: actions/upload-artifact@v3
         with:

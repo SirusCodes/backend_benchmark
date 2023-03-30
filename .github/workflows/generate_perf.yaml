@@ -22,7 +22,10 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: results
-          path: |
-            benchmark/results/
-            graphs/
+          name: raw_data
+          path: benchmark/results/
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: graphs
+          path: graphs/

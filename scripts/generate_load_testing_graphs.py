@@ -3,9 +3,9 @@ from typing import Dict, List, Tuple
 from dateutil import parser
 import datetime
 import json
-import sys
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import pandas as pd
 
 REQUIRED_METRICS = ["http_req_duration", "vus"]
 
@@ -39,42 +39,33 @@ def load_data(file_name: str) -> Dict[str, Tuple[float, datetime.datetime]]:
 
 
 def get_avg_from_data(metric_data_raw: List[Tuple[float, datetime.datetime]]) -> Dict[datetime.datetime, float]:
-    # prepare dicts for (sum, count)
-    metric_data_sum_count = {}
+    df = pd.DataFrame(metric_data_raw, columns=["value", "time"])
+    # remove outliers
+    df = df[(df["value"] - df["value"].mean()).abs() < 3 * df["value"].std()]
 
-    for (value, time) in metric_data_raw:
-        # round the time to seconds
-        time = round_seconds(time)
+    # round off the time to seconds
+    df["time"] = df["time"].apply(round_seconds)
 
-        # find the current entry
-        entry = metric_data_sum_count.get(time, (0, 0))
-        # and update its sum and count
-        metric_data_sum_count[time] = (entry[0] + value, entry[1] + 1)
+    # group by time and compute the average
+    df = df.groupby("time").mean()
 
-    # compute data avg
-    metric_data_avg: Dict[datetime.datetime, float] = {}
-    for (time, (val, count)) in metric_data_sum_count.items():
-        metric_data_avg[time] = val / count
-
-    return metric_data_avg
+    # return list of tuples
+    return df.to_dict()["value"]
 
 
-def split_vus_data(vus_data_raw: List[Tuple[float, datetime.datetime]]) -> List[int]:
-    # prepare lists for (time, vus)
-    vus_data_time = []
-    vus_data_vus = []
+def split_vus_data(vus_data_raw: List[Tuple[float, datetime.datetime]]) -> Dict[datetime.datetime, float]:
+    df = pd.DataFrame(vus_data_raw, columns=["value", "time"])
+    # round off the time to seconds
+    df["time"] = df["time"].apply(round_seconds)
 
-    for (value, time) in vus_data_raw:
-        # add the time to the time list
-        vus_data_time.append(time)
+    # group by time and compute the average
+    df = df.groupby("time").mean()
 
-        # add the vus to the vus list
-        vus_data_vus.append(value)
-
-    return [vus_data_time, vus_data_vus]
+    # return list of tuples
+    return df.to_dict()["value"]
 
 
-def generate_graph(metric_data_avg: Dict[datetime.datetime, List[float]], vus_data: List[int], watched_metric: str, backend: str) -> None:
+def generate_graph(metric_data_avg: Dict[datetime.datetime, float], vus_data: Dict[datetime.datetime, float], watched_metric: str, backend: str) -> None:
     # the chart will have two Y axes
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -86,8 +77,8 @@ def generate_graph(metric_data_avg: Dict[datetime.datetime, List[float]], vus_da
     )
 
     fig.add_trace(
-        go.Scatter(x=vus_data[0],
-                   y=vus_data[1],
+        go.Scatter(x=list(vus_data.keys()),
+                   y=list(vus_data.values()),
                    name="VU count"),
         secondary_y=True,
     )
@@ -95,6 +86,10 @@ def generate_graph(metric_data_avg: Dict[datetime.datetime, List[float]], vus_da
     fig.update_yaxes(
         title_text=f"Average {watched_metric} (ms)", secondary_y=False)
     fig.update_yaxes(title_text="VU count", secondary_y=True)
+    fig.update_layout(
+        autosize=False,
+        width=1500,
+    )
     fig.write_image(f"graphs/{backend}.jpeg", scale=2)
 
 

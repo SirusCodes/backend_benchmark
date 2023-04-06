@@ -1,72 +1,67 @@
-# Backend Benchmarking
+# Backend Benchmark
 
-It benchmarks RTT (Round trip time) - sequential and parallel, file upload and JSON parsing time in milliseconds for [Python (Flask)](https://flask.palletsprojects.com/en/2.2.x/), [Node (Express)](https://expressjs.com/), [Dart (shelf)](https://pub.dev/packages/shelf), [Dart (conduit)](https://j4qfrost.gitbook.io/conduit/) and [Dart (dart_frog)](https://dartfrog.vgv.dev/).
+Currently, it benchmarks backends in two ways.
 
-Please [open](https://github.com/SirusCodes/backend_benchmark/issues/new) an [issue](https://github.com/SirusCodes/backend_benchmark/issues/new) if you find any issues in the benchmarks.
+1. Custom script to target specific cases
+   1. Sequential requests (GET/POST)
+   2. Multiple parallel requests (GET/POST)
+   3. File upload (Multipart Requests)
+   4. JSON parsing
+2. Load testing by [k6]
 
-> Check README.md for specific backends to see how to run them.
+Below are the results for both
 
-## How to test
+## Specific stress test
 
-1. Run the backend
-2. Run benchmark
-3. Note the results
+|                                                                                    |                                                                           |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| ![Send one request at a time](static/performance/sync.jpeg)                        | ![Send multiple GET request at a time](static/performance/async_get.jpeg) |
+| Send one request at a time                                                         | Send multiple GET request at a time                                       |
+| ![Send multiple POST request at a time](static/performance/async_post.jpeg)        | ![Send files with multipart](static/performance/multipart.jpeg)           |
+| Send multiple POST request at a time                                               | Send files with multipart                                                 |
+| ![Send 1.04MB of JSON to server and let it parse it](static/performance/json.jpeg) |                                                                           |
+| Send 1.04MB of JSON to server and let it parse it                                  |                                                                           |
 
-# Benchmark
+## Load testing
 
-I got the below results by running the benchmark and servers on an AWS t3a.small instance running Ubuntu 22.
+You can have a look at the [config file](https://github.com/SirusCodes/backend_benchmark/blob/main/scripts/k6_load_testing.js) on how it works.
 
-The benchmarks are testing backends on 4 bases
+A **TL;DR** would be it simulates the user increasing from 0 to 50, staying there for a minute then increasing to 100 and so on till it reaches 200 in step 50 and then decreases in step 100 till it reaches 0.
 
-1. Synchronous request handling
-2. Asynchronous request handling
-3. Multi-part requests (File upload)
-4. JSON parsing
+In the graphs below the _**Red line**_, represents the number of **virtual/simulated users** and the _**Blue line**_, represents the **Average round trip time (ms)** on the **Y-axes** and the **time for test** on **X-axis**.
 
-> Lesser means better
+### Conduit (Dart)
 
-## Synchronous request handling
+![Conduit (Dart)](static/load_testing/dart_conduit.jpeg)
 
-In this, the client sends a request to the server then waits for the response and then sends another.
+### Dia (Dart)
 
-![Synchronous request handling graph](static/sync.svg)
+![Dia (Dart)](static/load_testing/dart_dia.jpeg)
 
-The lowest time taken was by Shelf which is still comparable with other frameworks
+### dart_frog (Dart)
 
-## Asynchronous request handling
+![dart_frog (Dart)](static/load_testing/dart_frog_backend.jpeg)
 
-In this multiple requests are sent to the server and waits for all the responses back from the server.
+### minerva (Dart)
 
-### GET requests
+![minerva (Dart)](static/load_testing/dart_minerva.jpeg)
 
-![GET Asynchronous request handling graph](static/async-get.svg)
+### shelf (Dart)
 
-The fastest one was ExpressJS but again with not a great margin.
+![shelf (Dart)](static/load_testing/dart_shelf.jpeg)
 
-### POST requests
+### spry (Dart)
 
-![POST Asynchronous request handling graph](static/async-post.svg)
+![spry (Dart)](static/load_testing/dart_spry.jpeg)
 
-Here Flask is the fastest and Dart servers perform a bit slower and conduit is the slowest of all.
+### Fiber (Go)
 
-## Multi-part requests (File upload)
+![Fiber (Go)](static/load_testing/go_fiber.jpeg)
 
-The multipart requests are usually made to upload images to a server. In this, I'm sending requests synchronously.
+### expressjs (Node)
 
-![Multi-part requests (File upload) graph](static/multipart.svg)
+![expressjs (Node)](static/load_testing/node_express.jpeg)
 
-The Dart servers are handling it very slowly. Flask and ExpressJS are killing it.
+### Flask (Python)
 
-dart_frog doesn't support it yet, you can track the progress at [dart_frog#296](https://github.com/VeryGoodOpenSource/dart_frog/issues/296).
-
-The Shelf also doesn't provide out-of-the-box support for it but I have used [shelf_multipart](https://pub.dev/packages/shelf_multipart) (a 3rd party package) to handle requests.
-
-## JSON parsing
-
-In this, I'm stress testing the speed of JSON parsing by frameworks. By sending 1.04MB of JSON data over POST request synchronously.
-
-![JSON parsing graph](static/json.svg)
-
-Again you can see Flask and express are twice as fast as Dart frameworks.
-
-> In real world no one will be sending such huge chunks of JSON over the network but these are just for benchmark sake
+![Flask (Python)](static/load_testing/py_flask.jpeg)

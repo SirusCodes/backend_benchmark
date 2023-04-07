@@ -4,13 +4,11 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
-  spry: ^0.4.0
-  spry_json: ^0.3.0
-  spry_multer: ^0.0.2
-  spry_router: ^0.4.1
+  spry: ^2.1.1
+  spry_router: ^1.2.1
 
 dev_dependencies:
   lints: ^2.0.0

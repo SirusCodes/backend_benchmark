@@ -1,2 +1,2 @@
-Flask==2.2.2
-fastwsgi==0.0.7
+Flask==2.2.3
+fastwsgi==0.0.9

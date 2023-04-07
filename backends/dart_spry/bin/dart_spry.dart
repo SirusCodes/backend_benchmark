@@ -1,7 +1,7 @@
+import 'package:spry/json.dart';
+import 'package:spry/multer.dart';
 import 'package:spry/spry.dart';
-import 'package:spry_json/spry_json.dart';
 import 'package:spry_router/spry_router.dart';
-import 'package:spry_multer/spry_multer.dart';
 
 void main(List<String> arguments) {
   final spry = Spry();
@@ -12,7 +12,7 @@ void main(List<String> arguments) {
   });
 
   router.post("/echo", (context) async {
-    final name = (await context.request.json)["name"];
+    final name = (await context.request.json())["name"];
     context.response.json({"message": "Hello $name!"});
   });
 
@@ -22,7 +22,7 @@ void main(List<String> arguments) {
   });
 
   router.post("/json_obj", (context) async {
-    final json = (await context.request.json);
+    final json = (await context.request.json());
     context.response.text(json.length.toString());
   });
 

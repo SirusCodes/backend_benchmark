@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "569ddca58d535e601dd1584afa117710abc999d036c0cd2c51777fb257df78e8"
+      sha256: a36ec4843dc30ea6bf652bf25e3448db6c5e8bcf4aa55f063a5d1dad216d8214
       url: "https://pub.dev"
     source: hosted
-    version: "53.0.0"
+    version: "58.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "10927c4b7c7c88b1adbca278c3d5531db92e2f4b4abf04e2919a800af965f3f5"
+      sha256: cc4242565347e98424ce9945c819c192ec0838cb9d1f6aa4a97cc96becbc5b27
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.0"
+    version: "5.10.0"
   args:
     dependency: transitive
     description:
@@ -29,10 +29,10 @@ packages:
     dependency: transitive
     description:
       name: async
-      sha256: bfe67ef28df125b7dddcea62755991f807aa39a2492a23e1550161692950bbe0
+      sha256: "947bfcf187f74dbc5e146c9eb9c0f10c9f8b30743e341481c1e2ed3ecc18c20c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.10.0"
+    version: "2.11.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -69,90 +69,90 @@ packages:
     dependency: "direct main"
     description:
       name: conduit
-      sha256: "0a4e7d72a83baf4caa6b1de86985ae8812a859e39990bca121529583e0e283df"
+      sha256: d3d29d83b0dd73b477ce778ee65da1f3e55729af7d7de802576c9693390cf11b
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.9"
   conduit_codable:
     dependency: transitive
     description:
       name: conduit_codable
-      sha256: "23bf434ba3649eff494a3f7a963a47c49966c42fadc20c258f1d70ec9fb46548"
+      sha256: "488bed56b9046e125869be602fb1a02452b2fd2d19743837a615a15a3755548c"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_common:
     dependency: transitive
     description:
       name: conduit_common
-      sha256: "8e7f5e2cbe4c70ef3d499d31c81609e70258b8033e8cfcf59d10c88d7ed05dbd"
+      sha256: "240f88479de38425ad8b3b2810b9ab4ebaae4c897923f79fb0f2ef0cce8cc14f"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_config:
     dependency: transitive
     description:
       name: conduit_config
-      sha256: ce7239bc737f0e82a497f8d3dfdc509742c39b187b0af3c158cfb003aae86280
+      sha256: d0066a15db2b11cd2d07022a3d426cb909cd8deef35c233b332131edbc4d3a01
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_core:
     dependency: transitive
     description:
       name: conduit_core
-      sha256: "3d35c40fee191aa587f4eeb58025eb7e6d5a193ce2cf9ada0706a7cf4e8afef7"
+      sha256: "5bffd0480be315eaf2f878ae352694f77add318d1d90a20c78864be82714015e"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.8"
   conduit_isolate_exec:
     dependency: transitive
     description:
       name: conduit_isolate_exec
-      sha256: "9a66919d395d789bb6ffda3b20232237512862e499dd3f9169c9e90a03b0972a"
+      sha256: c3e5cc052ac89cf36df7c01202b4239e6c507c01306779c59b2570d26b76b792
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_open_api:
     dependency: transitive
     description:
       name: conduit_open_api
-      sha256: "3cd0eb5a6b8c6220030daa61f6650bb0b9bd8869a24cc2483255d7a3412af137"
+      sha256: "83f3f3dfece0c36a111655dc1d8f555fb4b2ca695d36876c325eb157d5ef9cb7"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_password_hash:
     dependency: transitive
     description:
       name: conduit_password_hash
-      sha256: a347af0f8b41dd56e69d09e8baaec441c83d1ec86bc4a72ab8196cae46fe4f47
+      sha256: "3735c77ac94b224b662f8c7dd19ac16743dc20eb2fe2092be061719572b758a7"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_postgresql:
     dependency: transitive
     description:
       name: conduit_postgresql
-      sha256: "19f978635386203a29071c508e2c070320b956320dfd00f27a01f631d6b97163"
+      sha256: "8deced694b52a7ab8af02181180ad117a61d3124fe1b1326366d15e5ecaf06b9"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_runtime:
     dependency: transitive
     description:
       name: conduit_runtime
-      sha256: "5412f5e86192f3b3eedb4c42d4f2ab5531333a2c17c8117207d5ded57b8af399"
+      sha256: ba03e98585fcfb4b493484b1e43ae36a8a9ea024b62e787dea91ae4e41322a85
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   conduit_test:
     dependency: "direct dev"
     description:
       name: conduit_test
-      sha256: "02da6bd2bfec5824a24fb92bdd34d7cd80317ffa763379280b2c13f61bfd466c"
+      sha256: efb3de0146c6dc3a926ac98753b3ed52583297b0e38549aee2b3a8999b4efb5e
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.6"
+    version: "4.3.7"
   convert:
     dependency: transitive
     description:
@@ -245,18 +245,18 @@ packages:
     dependency: transitive
     description:
       name: matcher
-      sha256: c94db23593b89766cda57aab9ac311e3616cf87c6fa4e9749df032f66f30dcb8
+      sha256: "6501fbd55da300384b768785b83e5ce66991266cec21af89ab9ae7f5ce1c4cbb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.14"
+    version: "0.12.15"
   meta:
     dependency: transitive
     description:
       name: meta
-      sha256: "12307e7f0605ce3da64cf0db90e5fcab0869f3ca03f76be6bb2991ce0a55e82b"
+      sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   mime:
     dependency: "direct main"
     description:
@@ -269,10 +269,10 @@ packages:
     dependency: transitive
     description:
       name: node_preamble
-      sha256: "8ebdbaa3b96d5285d068f80772390d27c21e1fa10fb2df6627b1b9415043608d"
+      sha256: "6e7eac89047ab8a8d26cf16127b5ed26de65209847630400f9aefd7cd5c730db"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   package_config:
     dependency: transitive
     description:
@@ -309,18 +309,10 @@ packages:
     dependency: transitive
     description:
       name: postgres
-      sha256: bec40c7504ecb5b9ddb303af2e287fb2cd45fa4699f126f412bbb186421cd91c
+      sha256: "8a94c672fbfd252228862a8e786497828f650b427e51b2e624606756c64224e3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
-  pub_cache:
-    dependency: transitive
-    description:
-      name: pub_cache
-      sha256: "6dda58dc069d153b7373977244ee6da4e6cb726c6e50903c1c4f278d0c111db5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.2"
+    version: "2.6.1"
   pub_semver:
     dependency: transitive
     description:
@@ -421,10 +413,10 @@ packages:
     dependency: transitive
     description:
       name: source_span
-      sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
+      sha256: "53e943d4206a5e30df338fd4c6e7a077e02254531b138a15aec3bd143c1a8b3c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.10.0"
   stack_trace:
     dependency: transitive
     description:
@@ -461,26 +453,26 @@ packages:
     dependency: "direct dev"
     description:
       name: test
-      sha256: "5301f54eb6fe945daa99bc8df6ece3f88b5ceaa6f996f250efdaaf63e22886be"
+      sha256: "3dac9aecf2c3991d09b9cdde4f98ded7b30804a88a0d7e4e7e1678e78d6b97f4"
       url: "https://pub.dev"
     source: hosted
-    version: "1.23.1"
+    version: "1.24.1"
   test_api:
     dependency: transitive
     description:
       name: test_api
-      sha256: "6182294da5abf431177fccc1ee02401f6df30f766bc6130a0852c6b6d7ee6b2d"
+      sha256: eb6ac1540b26de412b3403a163d919ba86f6a973fe6cc50ae3541b80092fdcfb
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.18"
+    version: "0.5.1"
   test_core:
     dependency: transitive
     description:
       name: test_core
-      sha256: d2e9240594b409565524802b84b7b39341da36dd6fd8e1660b53ad928ec3e9af
+      sha256: "5138dbffb77b2289ecb12b81c11ba46036590b72a64a7a90d6ffb880f1a29e93"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.24"
+    version: "0.5.1"
   typed_data:
     dependency: transitive
     description:
@@ -509,10 +501,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: a4040e9852e56bf8a3c5a2e08a56f6facd76e75500cf2a922ce5d52394c4998a
+      sha256: f6deed8ed625c52864792459709183da231ebf66ff0cf09e69b573227c377efe
       url: "https://pub.dev"
     source: hosted
-    version: "11.0.1"
+    version: "11.3.0"
   watcher:
     dependency: transitive
     description:
@@ -546,4 +538,4 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.0 <3.0.0"
+  dart: ">=2.19.2 <3.0.0"

@@ -58,7 +58,7 @@ Future<double> getRTTTimeGetParallel(int requestCount, int burstCount) async {
   return getTimeFor(
     requestCount,
     () => Future.wait(List.generate(
-      requestCount,
+      burstCount,
       (_) => client.get(uri),
     )),
     () => client.close(),

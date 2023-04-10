@@ -13,14 +13,12 @@ Below are the results for both
 
 ## Specific stress test
 
-|                                                                                    |                                                                           |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| ![Send one request at a time](static/performance/sync.jpeg)                        | ![Send multiple GET request at a time](static/performance/async_get.jpeg) |
-| Send one request at a time                                                         | Send multiple GET request at a time                                       |
-| ![Send multiple POST request at a time](static/performance/async_post.jpeg)        | ![Send files with multipart](static/performance/multipart.jpeg)           |
-| Send multiple POST request at a time                                               | Send files with multipart                                                 |
-| ![Send 1.04MB of JSON to server and let it parse it](static/performance/json.jpeg) |                                                                           |
-| Send 1.04MB of JSON to server and let it parse it                                  |                                                                           |
+|                                                                 |                                                                                    |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| ![Send one request at a time](static/performance/sync.jpeg)     | ![Send multiple GET request at a time](static/performance/async.jpeg)              |
+| Send one request at a time                                      | Send multiple request at a time                                                    |
+| ![Send files with multipart](static/performance/multipart.jpeg) | ![Send 1.04MB of JSON to server and let it parse it](static/performance/json.jpeg) |
+| Send files with multipart                                       | Send 1.04MB of JSON to server and let it parse it                                  |
 
 ## Load testing
 

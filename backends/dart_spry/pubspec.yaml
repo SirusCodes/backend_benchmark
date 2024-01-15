@@ -4,11 +4,10 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ">=2.19.2 <3.0.0"
+  sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
-  spry: ^2.1.1
-  spry_router: ^1.2.1
+  spry: ^3.0.0
 
 dev_dependencies:
   lints: ^2.0.0

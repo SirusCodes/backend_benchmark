@@ -1,32 +1,37 @@
-import 'package:spry/json.dart';
-import 'package:spry/multer.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:spry/spry.dart';
-import 'package:spry_router/spry_router.dart';
+import 'package:webfetch/webfetch.dart';
 
-void main(List<String> arguments) {
-  final spry = Spry();
-  final router = Router();
-
-  router.get("/", (context) {
-    context.response.json({"message": "Hello World!"});
+void main(List<String> arguments) async {
+  final app = await Application.create(port: 8080);
+  app.get("/", (request) {
+    return {"message": "Hello World!"};
   });
 
-  router.post("/echo", (context) async {
-    final name = (await context.request.json())["name"];
-    context.response.json({"message": "Hello $name!"});
+  app.post("/echo", (request) async {
+    final body = (await request.json());
+    if (body is Map) {
+      return {"message": "Hello ${body["name"]}!"};
+    }
+
+    throw Abort(404);
   });
 
-  router.post("/file_upload", (context) async {
-    final multipart = await context.request.multipart();
-    context.response.text(multipart.files['benchmark']!.length.toString());
+  app.post("/file_upload", (request) async {
+    final formData = await request.formData();
+    final benchmark = formData.get("benchmark");
+
+    return (benchmark as Blob).size;
   });
 
-  router.post("/json_obj", (context) async {
-    final json = (await context.request.json());
-    context.response.text(json.length.toString());
+  app.post("/json_obj", (request) async {
+    final json = await request.json();
+
+    return (json as Iterable).length;
   });
 
-  spry.listen(router, port: 8080);
+  app.listen();
 
   print("Server running at http://localhost:8080");
 }

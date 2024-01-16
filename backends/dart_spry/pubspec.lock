@@ -97,14 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  http_methods:
-    dependency: transitive
-    description:
-      name: http_methods
-      sha256: c192bb6fb4ae99d06053f67a2c1c65350a29bc778a39d9a12b96bd2ec820e9dc
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -149,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: logging
-      sha256: "04094f2eb032cbb06c6f6e8d3607edcfcb0455e2bb6cbc010cb01171dcb64e6d"
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.2.0"
   matcher:
     dependency: transitive
     description:
@@ -197,10 +189,10 @@ packages:
     dependency: transitive
     description:
       name: path
-      sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
+      sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.3"
+    version: "1.9.0"
   pool:
     dependency: transitive
     description:
@@ -209,14 +201,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  prexp:
-    dependency: transitive
-    description:
-      name: prexp
-      sha256: e392a64e09411848d4d0addfffccad5347b1c4a224a87f685dce7e9e8cf0d5bc
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
   pub_semver:
     dependency: transitive
     description:
@@ -225,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  routingkit:
+    dependency: transitive
+    description:
+      name: routingkit
+      sha256: bd0f94f96c3869e7dae0601b2ff218f7402d1d76d6bfb4b2387a1f4071968c6b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   shelf:
     dependency: transitive
     description:
@@ -285,18 +277,10 @@ packages:
     dependency: "direct main"
     description:
       name: spry
-      sha256: "21e10716fbd1b6ee13b496b35df4b5b0fae35451f4623d9d3034c7ca673ea186"
+      sha256: b025ff346c21f5538fdd10a7253ec1282d2444ad205d11d67a7aa2b91da4a793
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
-  spry_router:
-    dependency: "direct main"
-    description:
-      name: spry_router
-      sha256: ec469c640f96ed5571b02dfe781f883a74953075b51770edcf47268312222518
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
+    version: "3.0.0"
   stack_trace:
     dependency: transitive
     description:
@@ -377,6 +361,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  web:
+    dependency: transitive
+    description:
+      name: web
+      sha256: "4188706108906f002b3a293509234588823c8c979dc83304e229ff400c996b05"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2"
   web_socket_channel:
     dependency: transitive
     description:
@@ -385,6 +377,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  webfetch:
+    dependency: transitive
+    description:
+      name: webfetch
+      sha256: "08cb156e0b476447da5c9d2cd30a4ca7d63270310153fc351aa536217d73d859"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.15"
   webkit_inspection_protocol:
     dependency: transitive
     description:
@@ -402,4 +402,4 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.2 <3.0.0"
+  dart: ">=3.2.0 <4.0.0"
